@@ -3,101 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
 <title>Dumli Garage | Güvenle Yola Devam</title>
 <style>
+:root{--red:#ff152b;--bg:#08090a;--card:#111416;--muted:#b9c0c5}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif}
-.site{width:100%;max-width:1500px;margin:auto;position:relative;line-height:0}
-.design{width:100%;height:auto;display:block}
-.link{position:absolute;display:block;z-index:2}
-.link:focus-visible{outline:2px solid white}
-.home{left:23%;top:1%;width:8%;height:5%}
-.services-nav{left:31%;top:1%;width:8%;height:5%}
-.about-nav{left:39%;top:1%;width:8%;height:5%}
-.gallery-nav{left:47%;top:1%;width:7%;height:5%}
-.contact-nav{left:53%;top:1%;width:8%;height:5%}
-.call{left:64%;top:1%;width:14%;height:5%}
-.hero-services{left:4%;top:48%;width:13%;height:5%}
-.hero-contact{left:17%;top:48%;width:11%;height:5%}
-.service1{left:3%;top:62%;width:14%;height:18%}
-.service2{left:18%;top:62%;width:14%;height:18%}
-.service3{left:33%;top:62%;width:14%;height:18%}
-.service4{left:48%;top:62%;width:14%;height:18%}
-.service5{left:63%;top:62%;width:10%;height:18%}
-.ai-input{position:absolute;z-index:4;left:75.7%;top:88.3%;width:18.3%;height:4.2%;border:0;border-radius:10px;background:#202a33;color:white;padding:0 1%;font-size:clamp(8px,1.1vw,14px);outline:none}
-.ai-send{position:absolute;z-index:5;left:93.8%;top:88%;width:2.5%;height:4.8%;border:0;border-radius:8px;background:#ff1025;color:white;cursor:pointer;font-size:clamp(8px,1vw,14px)}
-.extra{max-width:1000px;margin:auto;padding:28px 18px;line-height:1.6}
-h2{color:#ff1025}
-a{color:inherit}
-button:hover{filter:brightness(1.15)}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.wrap{width:min(1200px,92%);margin:auto}
+header{height:76px;background:#08090af2;border-bottom:1px solid #292d30;position:sticky;top:0;z-index:20}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:46px;height:46px;border:3px solid #ddd;border-right-color:var(--red);border-radius:50%;display:grid;place-items:center;font-size:25px;font-weight:900;font-style:italic;box-shadow:0 0 0 3px #242424}
+.brand-name{font-size:24px;font-weight:1000;font-style:italic;line-height:1}
+.brand-name span{display:block;color:var(--red);font-size:14px;letter-spacing:5px;margin-top:5px}
+nav{display:flex;gap:25px}
+nav a{font-size:12px;font-weight:800;color:#ddd;padding:27px 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--red);border-color:var(--red)}
+.call{font-size:13px;font-weight:bold;white-space:nowrap}
+.call b{color:var(--red);font-size:19px;margin-right:5px}
+.menu{display:none;background:#151515;border:1px solid #444;color:white;padding:8px;border-radius:5px}
+.hero{position:relative;min-height:570px;display:flex;align-items:center;overflow:hidden;background:#101214}
+.hero-bg{position:absolute;inset:0;background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.94) 28%,rgba(5,6,7,.54) 58%,rgba(5,6,7,.3) 100%),url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=2000&q=85');background-position:center;background-size:cover}
+.hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#08090a 0%,transparent 22%),linear-gradient(130deg,transparent 72%,#ff152b55 72.2%,transparent 73%)}
+.hero-content{position:relative;z-index:1;max-width:680px;padding:80px 0 100px}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:3px}
+.eyebrow span{color:var(--red)}
+h1{font-size:clamp(38px,5.3vw,67px);line-height:1.02;letter-spacing:-2px;margin:18px 0;font-weight:1000}
+h1 span{display:block;color:var(--red)}
+.hero p{max-width:490px;color:#c4cbd0;font-size:14px}
+.buttons{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}
+.btn{display:inline-block;padding:12px 18px;border:1px solid var(--red);border-radius:4px;background:var(--red);font-size:12px;font-weight:900}
+.btn.secondary{background:#08090a99;border-color:#aaa}
+.btn:hover{filter:brightness(1.2)}
+.hero-slogan{position:absolute;right:5%;top:10%;z-index:1;text-align:right;font-size:clamp(20px,3vw,35px);font-weight:1000;font-style:italic;line-height:1;text-shadow:2px 3px #000;transform:rotate(-5deg)}
+.hero-slogan span{display:block;color:var(--red)}
+.services{position:relative;margin-top:-30px;z-index:2;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+.service{padding:17px 15px;background:linear-gradient(145deg,#171a1c,#090a0b);border:1px solid #363d42;border-radius:6px;min-height:150px;box-shadow:0 12px 25px #0007;transition:.2s}
+.service:hover{transform:translateY(-4px);border-color:var(--red)}
+.service-icon{color:var(--red);font-size:29px;line-height:1;margin-bottom:15px}
+.service h2{font-size:13px;line-height:1.25;margin:0 0 7px}
+.service p{color:var(--muted);font-size:10px;line-height:1.5;margin:0}
+.service:after{content:"";display:block;width:28px;height:2px;background:var(--red);margin-top:13px}
+.about{padding:65px 0;background:linear-gradient(100deg,#0b0c0d,#131516,#090a0b);margin-top:35px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about-image{min-height:265px;border-radius:6px;border:1px solid #3a2a2d;background:linear-gradient(0deg,#0005,#0001),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=85') center/cover}
+h2.section-title{font-size:30px;line-height:1.15;margin:10px 0 15px}
+.section-title span{color:var(--red)}
+.about-copy{font-size:14px;color:var(--muted)}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:25px}
+.value{text-align:center;font-size:11px;font-weight:bold}
+.value i{display:block;color:var(--red);font-size:23px;font-style:normal}
+.value small{display:block;color:#aeb6bb;font-weight:normal}
+.contact{padding:60px 0;background:#090a0b}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px}
+.contact-card{padding:22px;border:1px solid #30373b;border-radius:6px;background:var(--card)}
+.contact-card h3{margin:8px 0;font-size:17px}
+.contact-card p{font-size:13px;color:#c0c6ca;margin:5px 0}
+.contact-card a{color:#ff6474;font-weight:bold}
+footer{border-top:1px solid #292d30;padding:22px 0;color:#a4aaae;font-size:12px}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+/* Dumli AI */
+.chat{position:fixed;right:18px;bottom:18px;width:310px;z-index:50;background:#101316;border:1px solid var(--red);border-radius:12px;overflow:hidden;box-shadow:0 0 25px #ff152b3a}
+.chat-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#171a1d;border-bottom:1px solid #303438}
+.bot{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#3a1017;color:var(--red);font-size:20px}
+.chat-head strong{color:var(--red);font-size:15px}
+.chat-head small{display:block;color:#adb4b9;font-size:10px}
+.messages{height:205px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:9px}
+.message{align-self:flex-start;max-width:95%;background:#22282c;color:#eee;border-radius:9px;padding:9px 10px;font-size:11px;line-height:1.45;white-space:pre-wrap}
+.message.user{align-self:flex-end;background:#54121b}
+.chat-form{display:flex;gap:6px;padding:9px;border-top:1px solid #303438}
+.chat-form input{flex:1;min-width:0;background:#1b2024;border:1px solid #353b40;border-radius:7px;color:white;padding:9px;font-size:11px;outline:none}
+.chat-form input:focus{border-color:var(--red)}
+.chat-form button{width:36px;background:var(--red);border:0;border-radius:7px;color:#fff;cursor:pointer;font-weight:bold}
+@media(max-width:950px){nav{gap:13px}.call{display:none}.services{grid-template-columns:repeat(3,1fr)}.about-grid{gap:22px}}
+@media(max-width:650px){
+ header{height:66px}.logo{width:38px;height:38px;font-size:20px}.brand-name{font-size:19px}.brand-name span{font-size:11px}
+ .menu{display:block}nav{display:none;position:absolute;top:65px;left:0;right:0;background:#08090a;padding:12px 4%;flex-direction:column;gap:0;border-bottom:1px solid #333}
+ nav.open{display:flex}nav a{padding:12px 0;border-bottom:1px solid #222}
+ .hero{min-height:530px}.hero-bg{background-position:58% center;background-image:linear-gradient(90deg,#050607ed,rgba(5,6,7,.65)),url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1100&q=85')}
+ .hero-content{padding:80px 0 90px}.hero-slogan{font-size:20px;top:4%;right:5%}
+ .services{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:-23px}.service{min-height:142px;padding:14px}.service:last-child{grid-column:span 2}
+ .about{padding:42px 0}.about-grid{grid-template-columns:1fr}.about-image{min-height:190px}.values{grid-template-columns:repeat(4,1fr)}
+ .contact{padding:42px 0}.contact-grid{grid-template-columns:1fr}
+ .chat{width:min(280px,78vw);right:9px;bottom:9px}.messages{height:155px}.chat-head{padding:9px 11px}
+ .footer-row{padding-bottom:220px}
+}
 </style>
 </head>
 <body>
-<main>
-<div class="site">
-<img class="design"
-src="https://raw.githubusercontent.com/dumligarage5306-ops/dumli-garagee/main/Dumli%20Garage_%20G%C3%BCvenle%20Yola%20Devam.png"
-alt="Dumli Garage - Güvenle Yola Devam">
-
-<a class="link home" href="#" aria-label="Ana sayfa"></a>
-<a class="link services-nav" href="#hizmetler" aria-label="Hizmetler"></a>
-<a class="link about-nav" href="#hakkimizda" aria-label="Hakkımızda"></a>
-<a class="link gallery-nav" href="#galeri" aria-label="Galeri"></a>
-<a class="link contact-nav" href="#iletisim" aria-label="İletişim"></a>
-<a class="link call" href="tel:+905434010653" aria-label="Bizi arayın"></a>
-<a class="link hero-services" href="#hizmetler" aria-label="Hizmetlerimize göz atın"></a>
-<a class="link hero-contact" href="#iletisim" aria-label="Bize ulaşın"></a>
-<a class="link service1" href="#iletisim" aria-label="Oto tamir ve bakım"></a>
-<a class="link service2" href="#iletisim" aria-label="Arıza tespit"></a>
-<a class="link service3" href="#iletisim" aria-label="Otomatik şanzıman"></a>
-<a class="link service4" href="tel:+905434010653" aria-label="Yol yardım"></a>
-<a class="link service5" href="#iletisim" aria-label="Yedek parça"></a>
-
-<form id="aiForm" style="display:contents">
-<input class="ai-input" id="aiInput" placeholder="Mesajınızı yazın..." aria-label="Dumli AI'ya mesaj yaz" autocomplete="off">
-<button class="ai-send" type="submit" aria-label="Mesajı gönder">➤</button>
-</form>
+<header>
+<div class="wrap nav">
+<a class="brand" href="#anasayfa"><span class="logo">D</span><span class="brand-name">DUMLI<span>GARAGE</span></span></a>
+<button class="menu" id="menuButton" aria-label="Menüyü aç">☰ Menü</button>
+<nav id="navigation">
+<a href="#anasayfa">ANA SAYFA</a><a href="#hizmetler">HİZMETLER</a><a href="#hakkimizda">HAKKIMIZDA</a><a href="#galeri">GALERİ</a><a href="#iletisim">İLETİŞİM</a>
+</nav>
+<a class="call" href="tel:+905434010653"><b>☎</b>0543 401 06 53</a>
 </div>
-
-<section class="extra" id="hizmetler">
-<h2>Hizmetlerimiz</h2>
-<p>Oto Tamir &amp; Bakım · Arıza Tespit &amp; Onarım · Otomatik Şanzıman · Yol Yardım · Yedek Parça</p>
+</header>
+<main>
+<section class="hero" id="anasayfa">
+<div class="hero-bg"></div>
+<div class="wrap hero-content">
+<div class="eyebrow"><span>／</span> PROFESYONEL OTO SERVİS <span>／</span></div>
+<h1>Aracınız Emin Ellerde<span>Güvenle Yola Devam</span></h1>
+<p>Dumli Garage olarak aracınızın bakım, onarım ve yol yardım ihtiyaçlarında yanınızdayız. Deneyimli ustalarımız ve kaliteli hizmet anlayışımızla güvenle yola çıkmanızı sağlıyoruz.</p>
+<div class="buttons"><a class="btn" href="#hizmetler">⚒　Hizmetlerimiz →</a><a class="btn secondary" href="#iletisim">☎　Bize Ulaşın</a></div>
+</div>
+<div class="hero-slogan">GÜVENLE<span>YOLA DEVAM</span></div>
 </section>
-
-<section class="extra" id="hakkimizda">
-<h2>Güvenle Yola Devam</h2>
-<p>Dumli Garage olarak aracınızın bakım, onarım ve yol yardım ihtiyaçlarında yanınızdayız.</p>
+<section class="wrap services" id="hizmetler">
+<a class="service" href="#iletisim"><div class="service-icon">⚒</div><h2>Oto Tamir &amp; Bakım</h2><p>Aracınızın bakım ve onarım işlemleri uzman kadromuzla yapılır.</p></a>
+<a class="service" href="#iletisim"><div class="service-icon">⌕</div><h2>Arıza Tespit &amp; Onarım</h2><p>Modern cihazlarla hızlı arıza tespiti ve çözüm.</p></a>
+<a class="service" href="#iletisim"><div class="service-icon">⚙</div><h2>Otomatik Şanzıman</h2><p>Şanzıman bakım ve onarımında uzman destek.</p></a>
+<a class="service" href="tel:+905434010653"><div class="service-icon">🚘</div><h2>Yol Yardım</h2><p>Yolda kaldığınızda yardım için bize ulaşın.</p></a>
+<a class="service" href="#iletisim"><div class="service-icon">⚙</div><h2>Yedek Parça</h2><p>Aracınıza uygun parça desteği.</p></a>
 </section>
-
-<section class="extra" id="galeri">
-<h2>Galeri</h2>
-<p>Dumli Garage çalışmalarımız ve servisimiz.</p>
-</section>
-
-<section class="extra" id="iletisim">
-<h2>İletişim</h2>
-<p><b>Güven Usta:</b> <a href="tel:+905434010653">0543 401 06 53</a></p>
-<p><b>Barış Usta:</b> <a href="tel:+905551700653">0555 170 06 53</a></p>
-<p>Yenikent Sanayi Sitesi, Fevzi Çakmak Mahallesi, Sincan / Ankara, B Blok 5/N</p>
-<p><a href="https://wa.me/905434010653?text=Merhaba%20Dumli%20Garage" target="_blank" rel="noopener">WhatsApp'tan yaz</a></p>
-</section>
+<section class="about" id="hakkimizda"><div class="wrap about-grid">
+<div class="about-image" role="img" aria-label="Otomobil fotoğrafı"></div>
+<div><div class="eyebrow"><span>／</span> SADECE TAMİR DEĞİL <span>／</span></div><h2 class="section-title">UZUN YOL <span>ARKADAŞI</span></h2>
+<p class="about-copy">Dumli Garage olarak güvenilir hizmet, özenli işçilik ve doğru iletişimle aracınızın yanında olmaya çalışıyoruz.</p>
+<div class="values"><div class="value"><i>♢</i>Güven<small>Şeffaf iletişim</small></div><div class="value"><i>☆</i>Deneyim<small>Özenli işçilik</small></div><div class="value"><i>⚙</i>Kalite<small>Çözüm odaklı</small></div><div class="value"><i>✓</i>Destek<small>Yol yardım</small></div></div>
+</div></div></section>
+<section class="contact" id="galeri"><div class="wrap"><div class="eyebrow"><span>／</span> DUMLI GARAGE <span>／</span></div><h2 class="section-title">Aracınız İçin <span>Doğru Adres</span></h2><p class="about-copy">Bakım, onarım ve yol yardım ihtiyaçlarınız için bizimle iletişime geçin.</p></div></section>
+<section class="contact" id="iletisim" style="padding-top:0"><div class="wrap">
+<div class="eyebrow">İLETİŞİM</div><h2 class="section-title">Güvenle yola devam edin.</h2>
+<div class="contact-grid">
+<div class="contact-card"><div class="service-icon">☎</div><h3>Güven Usta</h3><p>Servis ve yol yardım</p><p><a href="tel:+905434010653">0543 401 06 53</a></p></div>
+<div class="contact-card"><div class="service-icon">☎</div><h3>Barış Usta</h3><p>İletişim hattı</p><p><a href="tel:+905551700653">0555 170 06 53</a></p></div>
+<div class="contact-card"><div class="service-icon">⌖</div><h3>Adresimiz</h3><p>Yenikent Sanayi Sitesi, Fevzi Çakmak Mahallesi, Sincan / Ankara, B Blok 5/N</p><p><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Yenikent+Sanayi+Sitesi+Sincan+Ankara">Haritada aç</a></p><p><a target="_blank" rel="noopener" href="https://wa.me/905434010653?text=Merhaba%20Dumli%20Garage">WhatsApp'tan yaz</a></p></div>
+</div></div></section>
 </main>
-
+<footer><div class="wrap footer-row"><a class="brand" href="#anasayfa"><span class="logo">D</span><span class="brand-name">DUMLI<span>GARAGE</span></span></a><span>Güvenle Yola Devam.</span><span>© <span id="year"></span> Dumli Garage</span></div></footer>
+<aside class="chat" aria-label="Dumli AI sohbet asistanı">
+<div class="chat-head"><div class="bot">✦</div><div><strong>Dumli AI</strong><small>Garaj Asistanınız</small></div></div>
+<div class="messages" id="messages"><div class="message">Merhaba! Aracında ne sorun var? Motor, fren, akü veya şanzıman sorununu yazabilirsin.</div></div>
+<form class="chat-form" id="chatForm"><input id="chatInput" placeholder="Mesajınızı yazın..." aria-label="Dumli AI mesajı" autocomplete="off" required><button type="submit" aria-label="Mesaj gönder">➤</button></form>
+</aside>
 <script>
-document.getElementById('aiForm').addEventListener('submit',function(e){
-e.preventDefault();
-const input=document.getElementById('aiInput');
-const q=input.value.trim().toLocaleLowerCase('tr-TR');
-if(!q)return;
-let answer='Aracınızın marka-modelini ve yaşadığınız sorunu yazın. Detaylı yardım için Güven Usta: 0543 401 06 53.';
-if(/fren|balata/.test(q))answer='Fren sorunu varsa aracı kullanmayın. Güvenli bir yerde durup ustadan yardım isteyin: 0543 401 06 53.';
-else if(/yol yardım|yolda kaldım|çekici/.test(q))answer='Önce güvenli bir yere geçin ve dörtlüleri yakın. Yol yardımı: 0543 401 06 53.';
-else if(/akü|marş|çalışmıyor/.test(q))answer='Akü veya marş sistemi kaynaklı olabilir. Kesin teşhis için ustaya danışın: 0543 401 06 53.';
-else if(/şanzıman|vites|debriyaj/.test(q))answer='Aracı zorlamayın. Şanzıman veya debriyaj kontrolü için 0543 401 06 53 numarasından ulaşabilirsiniz.';
-alert('Dumli AI: '+answer);
-input.value='';
-});
+const menuButton=document.getElementById('menuButton');
+const navigation=document.getElementById('navigation');
+menuButton.addEventListener('click',()=>navigation.classList.toggle('open'));
+navigation.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navigation.classList.remove('open')));
+document.getElementById('year').textContent=new Date().getFullYear();
+const messages=document.getElementById('messages');
+function addMessage(text,who){const div=document.createElement('div');div.className='message'+(who==='user'?' user':'');div.textContent=text;messages.appendChild(div);messages.scrollTop=messages.scrollHeight}
+function getReply(q){
+q=q.toLocaleLowerCase('tr-TR');
+if(/fren|balata|pedal/.test(q))return 'Fren sorunu tehlikeli olabilir. Fren tutmuyorsa aracı kullanma; güvenli yerde dur ve yardım iste. Güven Usta: 0543 401 06 53.';
+if(/hararet|ısın|su eksilt/.test(q))return 'Hararet varsa güvenli yerde durup motoru kapat. Motor sıcakken radyatör kapağını açma. Ustaya danışmadan sürmeye devam etme.';
+if(/akü|marş|çalışmıyor/.test(q))return 'Akü veya marş sistemi kaynaklı olabilir. Kesin teşhis için ustaya danış: 0543 401 06 53.';
+if(/şanzıman|vites|debriyaj/.test(q))return 'Şanzıman veya debriyaj sorununda aracı zorlama. Yardım için 0543 401 06 53 numarasını arayabilirsin.';
+if(/yolda kaldım|yol yardım|çekici/.test(q))return 'Önce güvenli bir yere geç ve dörtlüleri yak. Yol yardımı: 0543 401 06 53.';
+if(/fiyat|ücret|kaç para/.test(q))return 'Ücret arızaya ve araç modeline göre değişir. Net bilgi için 0543 401 06 53 numarasından ustaya ulaşabilirsin.';
+return 'Aracının marka-modelini ve yaşadığın sorunu yaz. İlk yönlendirmeyi yapabilirim; kesin teşhis için ustaya danış: 0543 401 06 53.';
+}
+document.getElementById('chatForm').addEventListener('submit',e=>{e.preventDefault();const input=document.getElementById('chatInput');const q=input.value.trim();if(!q)return;addMessage(q,'user');input.value='';addMessage(getReply(q),'ai')});
 </script>
 </body>
 </html>
